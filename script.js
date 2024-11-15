@@ -1,5 +1,7 @@
 import superheroes from "./superheros.js";
 import supervillains from "./supervillains.js";
+
+// super hero object
 const superhero = {
   name: String,
   secretIdentity: String,
@@ -16,6 +18,8 @@ const superhero = {
   }
 };
 
+
+//Functional constructor for superhero
 function Superhero(name, secretIdentity, powers, weakness) {
   this.name = name;
   this.secretIdentity = secretIdentity;
@@ -23,8 +27,12 @@ function Superhero(name, secretIdentity, powers, weakness) {
   this.weakness = weakness;
 }
 
+
+//Inheriting the methods of superhero object
 Superhero.prototype = Object.create(superhero);
 
+
+// Creating first superhero
 const superhero1 = new Superhero(
   "Hulk",
   "Bruce Banner",
@@ -37,8 +45,11 @@ const superhero1 = new Superhero(
   ],
   "Bruce Banner's emotional state, inability to control Hulk"
 );
-//    superhero.usePower.bind(superhero1)()
 
+//Testing inheritance
+    superhero.usePower.bind(superhero1)()
+
+    //creating second superhero
 const superhero2 = new Superhero(
   "Black Widow",
   "Natasha Romanoff",
@@ -51,15 +62,18 @@ const superhero2 = new Superhero(
   ],
   "Human vulnerability, reliance on technology and gadgets"
 );
-//   console.log("--------------------------------------------")
-// superhero1.usePower();
 
-// superhero2.usePower();
-// console.log("--------------------------------------------")
-// superhero1.revealIdentity();
 
-// superhero2.revealIdentity();
-// console.log("--------------------------------------------")
+// Testting inheritance 
+ console.log("--------------------------------------------")
+superhero1.usePower();
+
+superhero2.usePower();
+console.log("--------------------------------------------")
+superhero1.revealIdentity();
+
+superhero2.revealIdentity();
+console.log("--------------------------------------------")
 
 //mapping superheroes
 const superheroes_ = superheroes.map(hero => {
@@ -71,6 +85,8 @@ const superheroes_ = superheroes.map(hero => {
   );
 });
 
+
+//Mapping suppervilains
 const supervillains_ = supervillains.map(supervillain => {
   return new Superhero(
     supervillain.name,
@@ -80,11 +96,13 @@ const supervillains_ = supervillains.map(supervillain => {
   );
 });
 
+//event listiner to randomely pick a superhero
 document.getElementById("hero").addEventListener("click", () => {
   const rand = Math.floor(Math.random() * superheroes_.length);
   createSuperhero(rand);
 });
 
+//function to set superhero details
 function createSuperhero(rand) {
   const heroIdentity = document.getElementById("hIdenity");
   const heroName = document.getElementById("hName");
@@ -100,11 +118,13 @@ function createSuperhero(rand) {
   console.log(rand);
 }
 
+//event listiner to randomely pick a suppervillain
 document.getElementById("villain").addEventListener("click", () => {
   const rand = Math.floor(Math.random() * supervillains_.length);
   createSupervillain(rand);
 });
 
+//function to set supervillain details
 function createSupervillain(rand) {
   const superVIdentity = document.getElementById("sIdenity");
   const superVName = document.getElementById("sName");
