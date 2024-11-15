@@ -1,5 +1,5 @@
-import superheros from "./superheros.js";
-
+import superheroes from "./superheros.js";
+import supervillains from "./supervillains.js";
 const superhero = {
   name: String,
   secretIdentity: String,
@@ -61,11 +61,61 @@ const superhero2 = new Superhero(
 // superhero2.revealIdentity();
 // console.log("--------------------------------------------")
 
-let superheros_ = null
-superheros.forEach(element => {
-     superheros_ =  new Superhero(element.name,element.secretIdentity,element.powers,element.weakness)
+//mapping superheroes
+const superheroes_ = superheroes.map(hero => {
+  return new Superhero(
+    hero.name,
+    hero.secretIdentity,
+    hero.powers,
+    hero.weakness
+  );
 });
 
+const supervillains_ = supervillains.map(supervillain => {
+  return new Superhero(
+    supervillain.name,
+    supervillain.secretIdentity,
+    supervillain.powers,
+    supervillain.weakness
+  );
+});
 
-console.log(superheros_);
+document.getElementById("hero").addEventListener("click", () => {
+  const rand = Math.floor(Math.random() * superheroes_.length);
+  createSuperhero(rand);
+});
 
+function createSuperhero(rand) {
+  const heroIdentity = document.getElementById("hIdenity");
+  const heroName = document.getElementById("hName");
+  const heroWeakness = document.getElementById("hWeakness");
+  const heroPowers = document.getElementById("hPowers");
+
+  heroName.innerText = `${superheroes_[rand].name}`;
+  heroIdentity.textContent = `Secret Identity: ${superheroes_[rand]
+    .secretIdentity}`;
+  heroWeakness.textContent = `${superheroes_[rand].weakness}`;
+  heroPowers.textContent = `${superheroes_[rand].powers}`;
+
+  console.log(rand);
+}
+
+document.getElementById("villain").addEventListener("click", () => {
+  const rand = Math.floor(Math.random() * supervillains_.length);
+  createSupervillain(rand);
+});
+
+function createSupervillain(rand) {
+  const superVIdentity = document.getElementById("sIdenity");
+  const superVName = document.getElementById("sName");
+  const superVWeakness = document.getElementById("sWeakness");
+  const superVPowers = document.getElementById("sPowers");
+
+  superVName.innerText = `${supervillains_[rand].name}`;
+  superVIdentity.textContent = `Secret Identity: ${supervillains_[rand]
+    .secretIdentity}`;
+  superVWeakness.textContent = `${supervillains_[rand].weakness}`;
+  superVPowers.textContent = `${supervillains_[rand].powers}`;
+
+  console.log(rand);
+}
